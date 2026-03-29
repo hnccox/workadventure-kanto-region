@@ -152,11 +152,11 @@
             "scaleInDock": 1
         },
         "public/maps/kanto-pokemart.tmj": {
-            "scale": 1.4482,
-            "selectedLayer": 1,
+            "scale": 6.3732,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 71.46802927772404,
-                "y": 161.57989228007182
+                "x": 66.13632084353229,
+                "y": 148.12025356178998
             }
         },
         "public/maps/kanto-pokemart.tmj#Poké_Mart_interior_HGSS": {
@@ -169,11 +169,11 @@
             "expandedObjectLayers": [
                 17
             ],
-            "scale": 0.4085,
+            "scale": 14.8945,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 728.2741738066095,
-                "y": 391.6768665850674
+                "x": 837.8596126086811,
+                "y": 437.61119876464466
             }
         },
         "public/maps/kanto-region.tmj#WA_Special_Zones": {
