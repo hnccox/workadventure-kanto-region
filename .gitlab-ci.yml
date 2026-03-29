@@ -15,7 +15,6 @@ deploy-maps:
     - npm ci
     - npm run buildmap
     - cp -r public/* dist/
-    - cp -r tilesets dist/
     - npm run upload-only
   environment:
     name: production

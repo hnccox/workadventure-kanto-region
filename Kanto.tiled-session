@@ -116,8 +116,8 @@
             "scale": 0.65,
             "selectedLayer": 12,
             "viewCenter": {
-                "x": 496.1538461538461,
-                "y": 335.3846153846154
+                "x": 229.99999999999994,
+                "y": 560
             }
         },
         "office.tmj#WA_Decoration": {
@@ -152,11 +152,11 @@
             "scaleInDock": 1
         },
         "public/maps/kanto-pokemart.tmj": {
-            "scale": 0.75,
+            "scale": 1.4482,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 108.66666666666669,
-                "y": 281.33333333333326
+                "x": 71.46802927772404,
+                "y": 63.527137135754714
             }
         },
         "public/maps/kanto-pokemart.tmj#Poké_Mart_interior_HGSS": {
@@ -172,8 +172,8 @@
             "scale": 1,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 608.5,
-                "y": 1032
+                "x": 850.5,
+                "y": 424
             }
         },
         "public/maps/kanto-region.tmj#WA_Special_Zones": {
@@ -201,9 +201,9 @@
     "project": "Kanto.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "office.tmj",
         "public/maps/kanto-region.tmj",
         "public/maps/kanto-pokemart.tmj",
+        "office.tmj",
         "conference.tmj",
         "kanto-pokemart.tmj",
         "kanto-region.tmj",
