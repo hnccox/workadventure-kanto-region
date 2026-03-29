@@ -1,0 +1,210 @@
+{
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "#Poké_Mart_interior_HGSS": {
+            "scaleInDock": 1
+        },
+        "#WA_Special_Zones": {
+            "scaleInDock": 1
+        },
+        "conference.tmj": {
+            "expandedObjectLayers": [
+                61,
+                2
+            ],
+            "scale": 0.69,
+            "selectedLayer": 12,
+            "viewCenter": {
+                "x": 655.7971014492755,
+                "y": 143.4782608695652
+            }
+        },
+        "conference.tmj#WA_Decoration": {
+            "scaleInDock": 1
+        },
+        "conference.tmj#WA_Exterior": {
+            "scaleInDock": 1
+        },
+        "conference.tmj#WA_Logo_Long": {
+            "scaleInDock": 1
+        },
+        "conference.tmj#WA_Miscellaneous": {
+            "scaleInDock": 1
+        },
+        "conference.tmj#WA_Other_Furniture": {
+            "scaleInDock": 1
+        },
+        "conference.tmj#WA_Room_Builder": {
+            "scaleInDock": 1
+        },
+        "conference.tmj#WA_Seats": {
+            "scaleInDock": 1
+        },
+        "conference.tmj#WA_Special_Zones": {
+            "scaleInDock": 1
+        },
+        "conference.tmj#WA_Tables": {
+            "scaleInDock": 1
+        },
+        "conference.tmj#WA_User_Interface": {
+            "scaleInDock": 1
+        },
+        "kanto-pokemart.tmj": {
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 68.25,
+                "y": 163
+            }
+        },
+        "kanto-pokemart.tmj#Poké_Mart_interior_HGSS": {
+            "scaleInDock": 1
+        },
+        "kanto-pokemart.tmj#WA_Special_Zones": {
+            "scaleInDock": 1
+        },
+        "kanto-region.tmj": {
+            "expandedGroupLayers": [
+                11,
+                6,
+                4,
+                16,
+                15
+            ],
+            "expandedObjectLayers": [
+                17,
+                8,
+                16
+            ],
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 850.3333333333333,
+                "y": 443.33333333333337
+            }
+        },
+        "kanto-region.tmj#Kanto_Region": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "kanto-region.tmj#WA_Special_Zones": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "office.tmj": {
+            "expandedGroupLayers": [
+                54,
+                55,
+                51
+            ],
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 0.65,
+            "selectedLayer": 12,
+            "viewCenter": {
+                "x": 79.23076923076923,
+                "y": 560
+            }
+        },
+        "office.tmj#WA_Decoration": {
+            "scaleInDock": 1
+        },
+        "office.tmj#WA_Exterior": {
+            "scaleInDock": 1
+        },
+        "office.tmj#WA_Logo_Long": {
+            "scaleInDock": 1
+        },
+        "office.tmj#WA_Miscellaneous": {
+            "scaleInDock": 1
+        },
+        "office.tmj#WA_Other_Furniture": {
+            "scaleInDock": 1
+        },
+        "office.tmj#WA_Room_Builder": {
+            "scaleInDock": 1
+        },
+        "office.tmj#WA_Seats": {
+            "scaleInDock": 1
+        },
+        "office.tmj#WA_Special_Zones": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "office.tmj#WA_Tables": {
+            "scaleInDock": 1
+        },
+        "office.tmj#WA_User_Interface": {
+            "scaleInDock": 1
+        },
+        "public/maps/kanto-pokemart.tmj": {
+            "scale": 2.3962053571428568,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 68.65020959478343,
+                "y": 174.85980437820217
+            }
+        },
+        "public/maps/kanto-pokemart.tmj#Poké_Mart_interior_HGSS": {
+            "scaleInDock": 1
+        },
+        "public/maps/kanto-pokemart.tmj#WA_Special_Zones": {
+            "scaleInDock": 1
+        },
+        "public/maps/kanto-region.tmj": {
+            "expandedObjectLayers": [
+                17
+            ],
+            "scale": 1,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 850.5,
+                "y": 424
+            }
+        },
+        "public/maps/kanto-region.tmj#WA_Special_Zones": {
+            "scaleInDock": 1
+        },
+        "public/maps/kanto-region.tmj#kanto": {
+            "scaleInDock": 1
+        },
+        "tilesets/Pallet_Town_HGSS.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "/Users/hnccox/Git/projects/workadventure-kanto-region",
+    "last.imagePath": "/Users/hnccox/Git/projects/workadventure-kanto-region/tilesets/pokemon/world",
+    "map.height": 6,
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "json",
+    "map.width": 7,
+    "openFiles": [
+    ],
+    "project": "Kanto.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
+        "conference.tmj",
+        "kanto-pokemart.tmj",
+        "kanto-region.tmj",
+        "tilesets/Pallet_Town_HGSS.tsx"
+    ],
+    "resizeMap.removeObjects": false,
+    "tileset.embedInMap": true,
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

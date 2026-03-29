@@ -1,0 +1,18 @@
+stages:
+  - deploy
+
+deploy-maps:
+  stage: deploy
+  image: node:20
+  only:
+    - master
+  variables:
+    UPLOAD_MODE: "MAP_STORAGE"
+    MAP_STORAGE_URL: "https://office.videodocker.com/map-storage"
+  script:
+    - npm ci
+    - npm run buildmap
+    - npm run upload-only
+  environment:
+    name: production
+    url: https://office.videodocker.com
