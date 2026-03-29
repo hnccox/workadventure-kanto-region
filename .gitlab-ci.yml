@@ -9,6 +9,7 @@ deploy-maps:
   variables:
     UPLOAD_MODE: "MAP_STORAGE"
     MAP_STORAGE_URL: "https://office.videodocker.com/map-storage"
+    SKIP_MAP_OPTIMIZER: "true"
   script:
     - npm ci
     - npm run buildmap
