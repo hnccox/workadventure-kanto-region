@@ -29498,7 +29498,7 @@
                   {
                      "name": "exitUrl",
                      "type": "string",
-                     "value": "kanto-pokemart.tmj#from-kanto"
+                     "value": "/_/global/office.videodocker.com/map-storage/kanto-region/maps/kanto-pokemart.tmj#from-kanto"
                   }
                ],
                "rotation": 0,
