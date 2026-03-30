@@ -16,7 +16,7 @@ import {
     type ShopItem,
 } from "./api";
 
-console.info('Script started successfully');
+console.log('%c[Kanto] main.ts loaded ✓', 'color: lime; font-size: 16px; font-weight: bold');
 
 // ─── Init ─────────────────────────────────────────────────────────────────────
 
