@@ -177,6 +177,24 @@ export async function logout(): Promise<void> {
 
 // ─── Player ──────────────────────────────────────────────────────────────────
 
+export interface OnboardingResult {
+    trainer_name: string;
+    rival_name: string;
+    starter: PlayerPokemon;
+}
+
+export async function chooseStarter(
+    trainerName: string,
+    rivalName: string,
+    starterSlug: 'bulbasaur' | 'charmander' | 'squirtle'
+): Promise<OnboardingResult> {
+    return post<OnboardingResult>('/player/choose-starter', {
+        trainer_name: trainerName,
+        rival_name:   rivalName,
+        starter_slug: starterSlug,
+    });
+}
+
 export async function getProgress(): Promise<PlayerProgress> {
     return get<PlayerProgress>('/player/progress');
 }
