@@ -28,6 +28,7 @@ WA.onInit().then(async () => {
     }).catch(e => console.error(e));
 
     // Authenticate with the API and load player state
+    let starterChosen = false;
     try {
         const user = await initSession();
         console.info(`[API] Authenticated as "${user.name}" (id=${user.id})`);
@@ -36,14 +37,15 @@ WA.onInit().then(async () => {
         console.info(`[API] PokéDollars: ${progress.pokedollars} | Location: ${progress.current_location ?? 'Unknown'}`);
 
         await syncLocation();
-
-        // First-time player: run onboarding
-        if (!progress.starter_chosen) {
-            await runOnboarding();
-        }
+        starterChosen = progress.starter_chosen;
 
     } catch (e) {
         console.error('[API] Failed to initialize session:', e);
+    }
+
+    // First-time player: run onboarding (always show if API unavailable)
+    if (!starterChosen) {
+        await runOnboarding();
     }
 
     // ─── Area hooks ─────────────────────────────────────────────────────────

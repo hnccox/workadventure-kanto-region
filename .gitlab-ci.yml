@@ -16,7 +16,7 @@ deploy-maps:
     - npm run buildmap
     - cp -r public/* dist/
     - rm -rf dist/maps/src
-    - SCRIPT_JS=$(basename dist/assets/*main*.js | grep -v '\.map$' | head -1) && echo "Script: $SCRIPT_JS" && for tmj in dist/maps/*.tmj; do sed -i 's|src\\/main\.ts|../assets/'"$SCRIPT_JS"'|g' "$tmj"; done
+    - SCRIPT_JS=$(basename dist/assets/*main*.js | grep -v '\.map$' | head -1) && echo "Script: $SCRIPT_JS" && for tmj in dist/maps/*.tmj; do sed -i 's|[./]*src/main\.ts|../assets/'"$SCRIPT_JS"'|g' "$tmj"; done
     - npm run upload-only
   environment:
     name: production
