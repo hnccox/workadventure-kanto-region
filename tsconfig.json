@@ -7,8 +7,10 @@
     "module": "ESNext",
     "lib": [
       "ESNext",
-      "DOM"
+      "DOM",
+      "DOM.Iterable"
     ],
+    "types": ["vite/client"],
     "allowJs": true,
     "moduleResolution": "Node",
     "strict": true,
