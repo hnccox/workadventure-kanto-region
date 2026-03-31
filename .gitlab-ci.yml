@@ -11,12 +11,26 @@ deploy-maps:
     MAP_STORAGE_URL: "https://office.videodocker.com/map-storage"
     UPLOAD_DIRECTORY: "kanto-region"
     SKIP_MAP_OPTIMIZER: "true"
+    VITE_API_BASE_URL: "https://office.videodocker.com/kanto-api/api/v1"
   script:
     - npm ci
     - npm run buildmap
     - cp -r public/* dist/
     - rm -rf dist/maps/src
-    - SCRIPT_JS=$(basename dist/assets/*main*.js | grep -v '\.map$' | head -1) && echo "Script: $SCRIPT_JS" && for tmj in dist/maps/*.tmj; do sed -i 's|[./]*src/main\.ts|../assets/'"$SCRIPT_JS"'|g' "$tmj"; done
+    - |
+      SCRIPT_JS=$(basename dist/assets/*main*.js | grep -v '\.map$' | head -1)
+      echo "Script: $SCRIPT_JS"
+      python3 -c "
+      import json, glob
+      script = '$SCRIPT_JS'
+      for path in glob.glob('dist/maps/*.tmj'):
+          d = json.load(open(path))
+          for p in d.get('properties', []):
+              if p.get('name') == 'script':
+                  p['value'] = '../assets/' + script
+          json.dump(d, open(path, 'w'))
+          print(path, '->', script)
+      "
     - npm run upload-only
   environment:
     name: production
