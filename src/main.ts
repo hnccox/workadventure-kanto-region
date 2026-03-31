@@ -43,11 +43,6 @@ WA.onInit().then(async () => {
         console.error('[API] Failed to initialize session:', e);
     }
 
-    // First-time player: run onboarding (always show if API unavailable)
-    if (!starterChosen) {
-        await runOnboarding();
-    }
-
     // ─── Area hooks ─────────────────────────────────────────────────────────
 
     // Pokemart counter interaction
@@ -69,6 +64,13 @@ WA.onInit().then(async () => {
     WA.room.area.onEnter('badge-display').subscribe(async () => {
         await onViewBadges();
     });
+
+    // First-time player: run onboarding (always show if API unavailable)
+    // Must be after area hooks so subscriptions are registered even during onboarding
+    if (!starterChosen) {
+        console.info('[Onboarding] starter_chosen=false, starting onboarding...');
+        runOnboarding().catch(e => console.error('[Onboarding] error:', e));
+    }
 
 }).catch(e => console.error(e));
 
