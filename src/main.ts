@@ -65,126 +65,37 @@ WA.onInit().then(async () => {
         await onViewBadges();
     });
 
-    // First-time player: run onboarding (always show if API unavailable)
+    // First-time player: open onboarding modal
     // Must be after area hooks so subscriptions are registered even during onboarding
     if (!starterChosen) {
-        console.info('[Onboarding] starter_chosen=false, starting onboarding...');
-        runOnboarding().catch(e => console.error('[Onboarding] error:', e));
+        console.info('[Onboarding] starter_chosen=false, opening onboarding modal...');
+        WA.player.state.onboardingComplete = false;
+        WA.ui.modal.openModal({
+            src: '../modals/onboarding.html',
+            title: 'Welcome to Kanto',
+            allowApi: true,
+            position: 'center',
+            closeCallback: async () => {
+                if (WA.player.state.onboardingComplete) {
+                    const trainerName = WA.player.state.onboardingTrainerName as string;
+                    const rivalName = WA.player.state.onboardingRivalName as string;
+                    const starterSlug = WA.player.state.onboardingStarterSlug as string;
+                    console.info(`[Onboarding] Complete: trainer=${trainerName}, rival=${rivalName}, starter=${starterSlug}`);
+                    try {
+                        const result = await chooseStarter(trainerName, rivalName, starterSlug as any);
+                        console.info(`[API] Starter chosen: ${result.starter.definition.name}`);
+                    } catch (e) {
+                        console.error('[API] Onboarding API call failed:', e);
+                    }
+                } else {
+                    console.info('[Onboarding] Modal closed without completing');
+                }
+            },
+        });
     }
 
 }).catch(e => console.error(e));
 
-// ─── Onboarding (new player flow) ────────────────────────────────────────────
-
-const STARTERS = [
-    { slug: 'bulbasaur',  name: 'Bulbasaur',  type: 'Grass/Poison' },
-    { slug: 'charmander', name: 'Charmander', type: 'Fire' },
-    { slug: 'squirtle',   name: 'Squirtle',   type: 'Water' },
-] as const;
-
-type StarterSlug = typeof STARTERS[number]['slug'];
-
-async function runOnboarding(): Promise<void> {
-    // Step 1: Welcome
-    await new Promise<void>(resolve => {
-        const popup = WA.ui.openPopup(
-            'onboardingWelcome',
-            `Welcome to Kanto!\n\nProfessor Oak: "Ah, a new trainer! Before we begin, I need to know a little about you."`,
-            [{ label: 'Continue', callback: () => { popup.close(); resolve(); } }]
-        );
-    });
-
-    // Step 2: Choose trainer name (default = WA display name)
-    const defaultName = WA.player.name ?? 'Trainer';
-    let trainerName = defaultName;
-
-    await new Promise<void>(resolve => {
-        const popup = WA.ui.openPopup(
-            'onboardingName',
-            `Professor Oak: "What is your name, young trainer?\n\n(Your name will be set to: "${defaultName}"\nTo change it, update your WorkAdventure display name before entering.)"`,
-            [
-                {
-                    label: `Continue as ${defaultName}`,
-                    callback: () => { trainerName = defaultName; popup.close(); resolve(); },
-                },
-            ]
-        );
-    });
-
-    // Step 3: Rival name
-    let rivalName = 'Gary';
-
-    await new Promise<void>(resolve => {
-        const popup = WA.ui.openPopup(
-            'onboardingRival',
-            `Professor Oak: "And your rival — the boy next door — what was his name again?\n\nA) Gary\nB) Blue\nC) Red`,
-            [
-                { label: 'Gary',  callback: () => { rivalName = 'Gary';  popup.close(); resolve(); } },
-                { label: 'Blue',  callback: () => { rivalName = 'Blue';  popup.close(); resolve(); } },
-                { label: 'Red',   callback: () => { rivalName = 'Red';   popup.close(); resolve(); } },
-            ]
-        );
-    });
-
-    // Step 4: Choose starter
-    let starterSlug: StarterSlug = 'charmander';
-
-    const starterList = STARTERS.map(s => `${s.name} (${s.type})`).join('\n');
-
-    await new Promise<void>(resolve => {
-        const popup = WA.ui.openPopup(
-            'onboardingStarter',
-            `Professor Oak: "Now then — choose your first Pokémon!\n\n${starterList}`,
-            [
-                ...STARTERS.map(s => ({
-                    label: s.name,
-                    callback: () => {
-                        starterSlug = s.slug;
-                        popup.close();
-                        resolve();
-                    },
-                })),
-            ]
-        );
-    });
-
-    // Step 5: Confirmation
-    await new Promise<void>(resolve => {
-        const chosenStarter = STARTERS.find(s => s.slug === starterSlug)!;
-        const popup = WA.ui.openPopup(
-            'onboardingConfirm',
-            `Professor Oak: "So your name is ${trainerName}, your rival is ${rivalName}, and you've chosen ${chosenStarter.name}. Is that correct?"`,
-            [
-                {
-                    label: 'Yes!',
-                    callback: async () => {
-                        popup.close();
-                        try {
-                            const result = await chooseStarter(trainerName, rivalName, starterSlug);
-                            const done = WA.ui.openPopup(
-                                'onboardingDone',
-                                `Professor Oak: "Wonderful! ${result.starter.definition.name} is now your partner. Good luck on your journey, ${result.trainer_name}!\n\nYou received:\n• ${result.starter.definition.name} Lv.${result.starter.level}"`,
-                                [{ label: "Let's go!", callback: () => { done.close(); resolve(); } }]
-                            );
-                        } catch (e) {
-                            console.error('[API] Onboarding failed:', e);
-                            resolve();
-                        }
-                    },
-                },
-                {
-                    label: 'Go back',
-                    callback: () => {
-                        popup.close();
-                        resolve();
-                        // Re-run onboarding from scratch
-                        runOnboarding().catch(console.error);
-                    },
-                },
-            ]
-        );
-    });
-}
 
 // ─── Location sync ────────────────────────────────────────────────────────────
 
