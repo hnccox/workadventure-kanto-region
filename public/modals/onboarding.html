@@ -101,6 +101,14 @@
   .starter-card .name { font-weight: 600; font-size: .85rem; margin-top: .25rem; }
   .starter-card .type { font-size: .75rem; color: #888; }
   .summary { background: #0f3460; border-radius: 8px; padding: 1rem; margin-bottom: 1.25rem; font-size: .9rem; line-height: 1.6; }
+  .starter-detail {
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  .starter-detail .detail-emoji { font-size: 3rem; margin-bottom: .5rem; }
+  .starter-detail .detail-name { font-size: 1.3rem; font-weight: 700; color: #e94560; margin-bottom: .25rem; }
+  .starter-detail .detail-type { font-size: .8rem; color: #888; margin-bottom: .75rem; }
+  .starter-detail .detail-desc { font-size: .9rem; line-height: 1.6; text-align: left; }
 </style>
 </head>
 <body>
@@ -173,6 +181,17 @@
     </div>
   </div>
 
+  <!-- Step 4b: Starter detail -->
+  <div class="step" id="step-starter-detail">
+    <span class="speaker">Prof. Oak</span>
+    <h2>Your potential partner!</h2>
+    <div class="starter-detail" id="starter-detail-content"></div>
+    <div class="buttons">
+      <button onclick="goTo('starter')">Back</button>
+      <button class="primary" id="btn-starter-confirm" onclick="goTo('confirm')">Choose this one!</button>
+    </div>
+  </div>
+
   <!-- Step 5: Confirm -->
   <div class="step" id="step-confirm">
     <span class="speaker">Prof. Oak</span>
@@ -188,6 +207,23 @@
 
 <script>
   const STARTER_NAMES = { bulbasaur: 'Bulbasaur', charmander: 'Charmander', squirtle: 'Squirtle' };
+  const STARTER_DATA = {
+    bulbasaur: {
+      emoji: '🌿',
+      type: 'Grass / Poison',
+      desc: 'Bulbasaur is dependable and steady — a perfect choice for trainers who want a head start. It carries a seed on its back that absorbs sunlight and blooms as it grows stronger. Strong against the first two Gym Leaders right from the start!'
+    },
+    charmander: {
+      emoji: '🔥',
+      type: 'Fire',
+      desc: 'Charmander is brave and fiery, ideal for trainers who love a challenge. The flame burning on its tail reflects its vitality and fighting spirit — the brighter it burns, the stronger Charmander feels. A fan-favourite for a reason!'
+    },
+    squirtle: {
+      emoji: '💧',
+      type: 'Water',
+      desc: 'Squirtle is a well-rounded choice for trainers who value resilience. Its tough shell shields it from attacks, and it can fire precise jets of water at will. Great defensive stats make it forgiving for new trainers.'
+    }
+  };
   let trainerName = 'Trainer';
   let rivalName = '';
   let starterSlug = '';
@@ -222,6 +258,13 @@
     document.querySelectorAll('.starter-card').forEach(c => c.classList.remove('selected'));
     el.classList.add('selected');
     document.getElementById('btn-starter-next').disabled = false;
+    const data = STARTER_DATA[slug];
+    document.getElementById('starter-detail-content').innerHTML =
+      '<div class="detail-emoji">' + data.emoji + '</div>' +
+      '<div class="detail-name">' + STARTER_NAMES[slug] + '</div>' +
+      '<div class="detail-type">' + data.type + '</div>' +
+      '<div class="detail-desc">' + data.desc + '</div>';
+    goTo('starter-detail');
   }
 
   function confirm() {

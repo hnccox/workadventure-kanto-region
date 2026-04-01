@@ -10,7 +10,6 @@ import {
     healParty,
     getShopCatalog,
     getParty,
-    chooseStarter,
     ApiError,
     type InventoryItem,
     type ShopItem,
@@ -65,32 +64,17 @@ WA.onInit().then(async () => {
         await onViewBadges();
     });
 
-    // First-time player: open onboarding modal
+    // First-time player: open onboarding modal (served by the API, handles choose-starter itself)
     // Must be after area hooks so subscriptions are registered even during onboarding
     if (!starterChosen) {
         console.info('[Onboarding] starter_chosen=false, opening onboarding modal...');
-        WA.player.state.onboardingComplete = false;
         WA.ui.modal.openModal({
-            src: '../modals/onboarding.html',
+            src: import.meta.env.VITE_ONBOARDING_URL ?? 'http://localhost:8080/api/v1/onboarding',
             title: 'Welcome to Kanto',
             allowApi: true,
             position: 'center',
-            closeCallback: async () => {
-                if (WA.player.state.onboardingComplete) {
-                    const trainerName = WA.player.state.onboardingTrainerName as string;
-                    const rivalName = WA.player.state.onboardingRivalName as string;
-                    const starterSlug = WA.player.state.onboardingStarterSlug as string;
-                    console.info(`[Onboarding] Complete: trainer=${trainerName}, rival=${rivalName}, starter=${starterSlug}`);
-                    try {
-                        const result = await chooseStarter(trainerName, rivalName, starterSlug as any);
-                        console.info(`[API] Starter chosen: ${result.starter.definition.name}`);
-                    } catch (e) {
-                        console.error('[API] Onboarding API call failed:', e);
-                    }
-                } else {
-                    console.info('[Onboarding] Modal closed without completing');
-                }
-            },
+            allow: null,
+            allowFullScreen: false,
         });
     }
 

@@ -12,6 +12,7 @@ deploy-maps:
     UPLOAD_DIRECTORY: "kanto-region"
     SKIP_MAP_OPTIMIZER: "true"
     VITE_API_BASE_URL: "https://office.videodocker.com/kanto-api/api/v1"
+    VITE_ONBOARDING_URL: "https://office.videodocker.com/kanto-api/api/v1/onboarding"
   script:
     - npm ci
     - npm run buildmap
