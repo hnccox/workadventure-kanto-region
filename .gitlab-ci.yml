@@ -12,25 +12,29 @@ deploy-maps:
     UPLOAD_DIRECTORY: "kanto-region"
     SKIP_MAP_OPTIMIZER: "true"
     VITE_API_BASE_URL: "https://office.videodocker.com/kanto-api/api/v1"
-    VITE_ONBOARDING_URL: "https://office.videodocker.com/kanto-api/api/v1/onboarding"
   script:
     - npm ci
     - npm run buildmap
     - cp -r public/* dist/
     - rm -rf dist/maps/src
     - |
-      SCRIPT_JS=$(basename dist/assets/*main*.js | grep -v '\.map$' | head -1)
-      echo "Script: $SCRIPT_JS"
       python3 -c "
-      import json, glob
-      script = '$SCRIPT_JS'
-      for path in glob.glob('dist/maps/*.tmj'):
-          d = json.load(open(path))
+      import json, glob, os, re
+      assets = {os.path.basename(f) for f in glob.glob('dist/assets/*.js') if not f.endswith('.map')}
+      for tmj_path in glob.glob('dist/maps/*.tmj'):
+          stem = os.path.splitext(os.path.basename(tmj_path))[0]
+          pattern = re.compile(rf'^maps-{re.escape(stem)}-[^.]+\.js$')
+          matches = [n for n in assets if pattern.match(n)]
+          if not matches:
+              print(f'WARNING: no bundle found for {tmj_path}, skipping')
+              continue
+          js_name = matches[0]
+          d = json.load(open(tmj_path))
           for p in d.get('properties', []):
               if p.get('name') == 'script':
-                  p['value'] = '../assets/' + script
-          json.dump(d, open(path, 'w'))
-          print(path, '->', script)
+                  p['value'] = '../assets/' + js_name
+          json.dump(d, open(tmj_path, 'w'))
+          print(tmj_path, '->', js_name)
       "
     - npm run upload-only
   environment:

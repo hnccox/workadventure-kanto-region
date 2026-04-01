@@ -525,5 +525,12 @@
   "tilewidth": 16,
   "type": "map",
   "version": "1.10",
-  "width": 14
+  "width": 14,
+  "properties": [
+    {
+      "name": "script",
+      "type": "string",
+      "value": "../../src/maps/kanto-pokemart.ts"
+    }
+  ]
 }
