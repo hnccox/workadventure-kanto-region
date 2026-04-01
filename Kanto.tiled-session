@@ -1,9 +1,9 @@
 {
     "activeFile": "public/maps/kanto-region.tmj",
     "expandedProjectPaths": [
-        ".",
+        "public",
         "public/maps",
-        "public"
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -158,8 +158,8 @@
             "scale": 6.3732,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 28.164815163497146,
-                "y": 169.1457980292475
+                "x": 112.03163246093015,
+                "y": 95.87020648967551
             }
         },
         "public/maps/kanto-pokemart.tmj#Poké_Mart_interior_HGSS": {
@@ -169,18 +169,25 @@
             "scaleInDock": 1
         },
         "public/maps/kanto-region.tmj": {
+            "expandedGroupLayers": [
+                4
+            ],
             "expandedObjectLayers": [
                 17
             ],
-            "scale": 1.1618,
+            "scale": 2.9645,
             "selectedLayer": 14,
             "viewCenter": {
-                "x": 810.3804441384059,
-                "y": 1920.2960922706145
+                "x": 746.8375780064091,
+                "y": 1758.1379659301736
             }
         },
         "public/maps/kanto-region.tmj#WA_Special_Zones": {
             "scaleInDock": 1
+        },
+        "public/maps/kanto-region.tmj#above": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "public/maps/kanto-region.tmj#kanto": {
             "scaleInDock": 1,
@@ -192,7 +199,8 @@
         }
     },
     "last.exportedFilePath": "/Users/hnccox/Git/projects/workadventure-kanto-region",
-    "last.imagePath": "/Users/hnccox/Git/projects/workadventure-kanto-region/tilesets/pokemon/world",
+    "last.externalTilesetPath": "/Users/hnccox/Downloads/Kanto",
+    "last.imagePath": "/Users/hnccox/Git/projects/workadventure-kanto-region/public/tilesets/pokemon/locations/pallet_town",
     "map.height": 6,
     "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
     "map.lastUsedFormat": "json",
@@ -214,6 +222,7 @@
     ],
     "resizeMap.removeObjects": false,
     "tileset.embedInMap": true,
+    "tileset.lastUsedFilter": "All Files (*)",
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
         "height": 16,
