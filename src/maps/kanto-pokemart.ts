@@ -11,12 +11,12 @@ const TILE_SIZE   = 16;
 
 initMap(async (_user, _progress) => {
 
-    // Zoom camera to fill the viewport with the whole map
+    // Center the map in the viewport without changing zoom
     WA.camera.set(
         (MAP_TILES_W * TILE_SIZE) / 2,
         (MAP_TILES_H * TILE_SIZE) / 2,
-        MAP_TILES_W * TILE_SIZE,
-        MAP_TILES_H * TILE_SIZE,
+        window.innerWidth,
+        window.innerHeight,
         false
     );
 
