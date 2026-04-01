@@ -5,7 +5,20 @@ import { initMap, handleApiError } from '../main';
 
 console.log('%c[Kanto] kanto-pokemart loaded', 'color: cyan; font-weight: bold');
 
+const MAP_TILES_W = 14;
+const MAP_TILES_H = 12;
+const TILE_SIZE   = 16;
+
 initMap(async (_user, _progress) => {
+
+    // Zoom camera to fill the viewport with the whole map
+    WA.camera.set(
+        (MAP_TILES_W * TILE_SIZE) / 2,
+        (MAP_TILES_H * TILE_SIZE) / 2,
+        MAP_TILES_W * TILE_SIZE,
+        MAP_TILES_H * TILE_SIZE,
+        false
+    );
 
     // Entire map is one location — update on entry
     updateProgress({
