@@ -27,7 +27,7 @@ WA.onInit().then(async () => {
     }).catch(e => console.error(e));
 
     // Authenticate with the API and load player state
-    let starterChosen = false;
+    let introComplete = false;
     try {
         const user = await initSession();
         console.info(`[API] Authenticated as "${user.name}" (id=${user.id})`);
@@ -36,7 +36,7 @@ WA.onInit().then(async () => {
         console.info(`[API] PokéDollars: ${progress.pokedollars} | Location: ${progress.current_location ?? 'Unknown'}`);
 
         await syncLocation();
-        starterChosen = progress.starter_chosen;
+        introComplete = !!(progress.flags?.intro_complete);
 
     } catch (e) {
         console.error('[API] Failed to initialize session:', e);
@@ -66,10 +66,10 @@ WA.onInit().then(async () => {
 
     // First-time player: open onboarding modal (served by the API, handles choose-starter itself)
     // Must be after area hooks so subscriptions are registered even during onboarding
-    if (!starterChosen) {
+    if (!introComplete) {
         console.info('[Onboarding] starter_chosen=false, opening onboarding modal...');
         WA.ui.modal.openModal({
-            src: import.meta.env.VITE_ONBOARDING_URL ?? 'http://localhost:8080/api/v1/onboarding',
+            src: `${import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8080/api/v1'}/onboarding`,
             title: 'Welcome to Kanto',
             allowApi: true,
             position: 'center',
